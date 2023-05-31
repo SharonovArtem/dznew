@@ -5,20 +5,22 @@ class Program
     static void Main(string[] args)
     {
         Random random = new Random();
-        int[] arr = new int[30];
-        int number = arr[0];
+        int[] arrayWithNumbers = new int[30];
+        int minimalRandomNumber = 0;
+        int maximalRandomNumber = 9;
+        int number = arrayWithNumbers[0];
         int count = 1;
-        int maxNumber = arr[0]; 
+        int maxNumber = arrayWithNumbers[0];
         int maxCount = 1;
 
-        for (int i = 0; i < arr.Length; i++)
+        for (int i = 0; i < arrayWithNumbers.Length; i++)
         {
-            arr[i] = random.Next(0, 9);
+            arrayWithNumbers[i] = random.Next(minimalRandomNumber, maximalRandomNumber);
         }
 
-        for (int i = 1; i < arr.Length; i++)
+        for (int i = 1; i < arrayWithNumbers.Length; i++)
         {
-            if (arr[i] == number)
+            if (arrayWithNumbers[i] == number)
             {
                 count++;
             }
@@ -29,7 +31,8 @@ class Program
                     maxCount = count;
                     maxNumber = number;
                 }
-                number = arr[i];
+
+                number = arrayWithNumbers[i];
                 count = 1;
             }
         }
@@ -40,7 +43,7 @@ class Program
             maxNumber = number;
         }
 
-        Console.WriteLine("Массив: " + string.Join(", ", arr));
+        Console.WriteLine("Массив: " + string.Join(", ", arrayWithNumbers));
         Console.WriteLine("Число: " + maxNumber);
         Console.WriteLine("Количество повторений: " + maxCount);
     }
