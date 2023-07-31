@@ -24,17 +24,16 @@ class Program
             {
                 count++;
             }
-            else
+            
+            if (count > maxCount)
             {
-                if (count > maxCount)
-                {
-                    maxCount = count;
-                    maxNumber = number;
-                }
-
-                number = arrayWithNumbers[i];
-                count = 1;
+                maxCount = count;
+                maxNumber = number;
             }
+
+            number = arrayWithNumbers[i];
+            count = 1;
+            
         }
 
         if (count > maxCount)
