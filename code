@@ -7,42 +7,52 @@ class Program
         Random random = new Random();
         int[] arrayWithNumbers = new int[30];
         int minimalRandomNumber = 0;
-        int maximalRandomNumber = 9;
+        int maximalRandomNumber = 3;
         int number = arrayWithNumbers[0];
-        int count = 1;
+        int count = 0;
         int maxNumber = arrayWithNumbers[0];
-        int maxCount = 1;
+        int maxCount = 0;
 
         for (int i = 0; i < arrayWithNumbers.Length; i++)
         {
             arrayWithNumbers[i] = random.Next(minimalRandomNumber, maximalRandomNumber);
         }
 
-        for (int i = 1; i < arrayWithNumbers.Length; i++)
+        for (int i = 0; i < arrayWithNumbers.Length - 1; i++)
         {
-            if (arrayWithNumbers[i] == number)
+            if (arrayWithNumbers[i] == arrayWithNumbers[i + 1])
             {
-                count++;
-            }
-            
-            if (count > maxCount)
-            {
-                maxCount = count;
-                maxNumber = number;
-            }
+                for (int j = i; j < arrayWithNumbers.Length - 1; j++)
+                {
+                    count++;
+                    
+                    if (arrayWithNumbers[j + 1] != arrayWithNumbers[i])
+                    {
+                        number = arrayWithNumbers[i];
+                        break;
+                    }
+                }
 
-            number = arrayWithNumbers[i];
-            count = 1;
-            
-        }
+                if (count > maxCount)
+                {
+                    maxCount = count;
+                    maxNumber = number;
+                    count = 0;
+                }
+                else
+                {
+                    count = 0;
+                }
 
-        if (count > maxCount)
-        {
-            maxCount = count;
-            maxNumber = number;
+                number = arrayWithNumbers[i];
+            }           
         }
 
         Console.WriteLine("Массив: " + string.Join(", ", arrayWithNumbers));
+        Console.WriteLine("Число: " + maxNumber);
+        Console.WriteLine("Количество повторений: " + maxCount);
+    }
+}
         Console.WriteLine("Число: " + maxNumber);
         Console.WriteLine("Количество повторений: " + maxCount);
     }
