@@ -9,7 +9,7 @@ class Program
         int minimalRandomNumber = 0;
         int maximalRandomNumber = 3;
         int number = arrayWithNumbers[0];
-        int count = 0;
+        int count = 1;
         int maxNumber = arrayWithNumbers[0];
         int maxCount = 0;
 
@@ -22,37 +22,23 @@ class Program
         {
             if (arrayWithNumbers[i] == arrayWithNumbers[i + 1])
             {
-                for (int j = i; j < arrayWithNumbers.Length - 1; j++)
-                {
-                    count++;
-                    
-                    if (arrayWithNumbers[j + 1] != arrayWithNumbers[i])
-                    {
-                        number = arrayWithNumbers[i];
-                        break;
-                    }
-                }
-
-                if (count > maxCount)
-                {
-                    maxCount = count;
-                    maxNumber = number;
-                    count = 0;
-                }
-                else
-                {
-                    count = 0;
-                }
-
                 number = arrayWithNumbers[i];
-            }           
+                count++;
+            }
+            else if (maxCount < count)
+            {
+                maxCount = count;
+                maxNumber = number;
+                count = 1;
+            }  
+            else
+            {
+                count = 1;
+            }
+
         }
 
         Console.WriteLine("Массив: " + string.Join(", ", arrayWithNumbers));
-        Console.WriteLine("Число: " + maxNumber);
-        Console.WriteLine("Количество повторений: " + maxCount);
-    }
-}
         Console.WriteLine("Число: " + maxNumber);
         Console.WriteLine("Количество повторений: " + maxCount);
     }
